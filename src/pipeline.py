@@ -34,28 +34,41 @@ class OCRPipeline:
             det_limit_type="max",
         )
 
-    def process(self, image_path: str, preprocess: bool = True) -> Dict:
+    def process(
+        self, image_path: str, preprocess: bool = True, save_preprocessed: bool = False
+    ) -> tuple:
         """处理单张图片
 
         Args:
             image_path: 图片路径
             preprocess: 是否应用预处理
+            save_preprocessed: 是否保存预处理后的图片
 
         Returns:
-            包含文字、位置、置信度的结构化结果
+            tuple: (结果字典, 预处理时间, OCR时间, 解析时间)
         """
-        from preprocessing import preprocess_pipeline
+        import time
+        from src.preprocessing import preprocess_pipeline, load_image
 
+        t0 = time.time()
         if preprocess:
-            try:
-                processed_img = preprocess_pipeline(image_path)
-                result = self.ocr.ocr(processed_img)
-            except ImportError:
-                result = self.ocr.ocr(image_path)
+            processed_img = preprocess_pipeline(
+                image_path, save_preprocessed=save_preprocessed
+            )
         else:
-            result = self.ocr.ocr(image_path)
+            # 不预处理时，直接加载原图
+            processed_img = load_image(image_path)
+        preprocess_time = time.time() - t0
 
-        return self._parse_result(result)
+        t1 = time.time()
+        result = self.ocr.ocr(processed_img)
+        ocr_time = time.time() - t1
+
+        t2 = time.time()
+        parsed = self._parse_result(result)
+        parse_time = time.time() - t2
+
+        return parsed, preprocess_time, ocr_time, parse_time
 
     def _parse_result(self, ocr_result) -> Dict:
         """解析 OCR 输出为结构化数据"""
@@ -73,10 +86,18 @@ class OCRPipeline:
             confidence = rec_scores[i] if i < len(rec_scores) else 0.0
             poly = rec_polys[i] if i < len(rec_polys) else []
 
-            structured["words"].append({"text": text, "confidence": float(confidence)})
+            word_id = f"w{i}"
+            structured["words"].append(
+                {
+                    "id": word_id,
+                    "text": text,
+                    "confidence": float(confidence),
+                }
+            )
             structured["full_text"] += text + "\n"
             structured["regions"].append(
                 {
+                    "id": word_id,
                     "bbox": poly.tolist() if hasattr(poly, "tolist") else poly,
                     "text": text,
                     "confidence": float(confidence),
@@ -88,11 +109,16 @@ class OCRPipeline:
 
     def process_to_json(
         self, image_path: str, output_path: str, preprocess: bool = True
-    ) -> None:
-        """处理图片并保存结果到 JSON 文件"""
+    ) -> Dict:
+        """处理图片并保存结果到 JSON 文件
+
+        Returns:
+            结构化结果字典
+        """
         result = self.process(image_path, preprocess=preprocess)
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
+        return result
 
 
 def main():
@@ -106,10 +132,11 @@ def main():
     args = parser.parse_args()
 
     pipeline = OCRPipeline()
-    pipeline.process_to_json(
+    result = pipeline.process_to_json(
         args.image_path, args.output, preprocess=not args.no_preprocess
     )
     print(f"结果已保存到: {args.output}")
+    print(f"识别文字: {result.get('full_text', '')[:200]}...")
 
 
 if __name__ == "__main__":

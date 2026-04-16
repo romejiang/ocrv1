@@ -16,12 +16,14 @@
 - ✓ 图像预处理流水线（去噪、二值化、透视矫正）— Phase 1
 - ✓ CPU 推理优化（MKL-DNN, cpu_threads）— Phase 1
 - ✓ macOS 本地开发环境配置 — Phase 1
+- ✓ 批量导入彩票图片（文件夹、ZIP）— Phase 2
+- ✓ 多进程批量处理 — Phase 2
+- ✓ 期号、投注时间、金额提取 — Phase 3
+- ✓ 投注内容（比赛、选项、赔率）解析 — Phase 3
+- ✓ 多注识别 — Phase 3
 
 ### Active
 
-- [ ] 支持批量导入彩票图片（文件夹、ZIP）
-- [ ] 提取投注内容（比赛、选项、赔率）
-- [ ] 提取期号、投注时间、金额
 - [ ] 导出结构化数据（JSON/CSV）
 - [ ] Ubuntu 服务器部署支持
 
@@ -53,12 +55,14 @@
 |----------|-----------|---------|
 | PaddleOCR 而非 Tesseract | 中文识别率高，预训练模型丰富 | ✓ Phase 1 完成 |
 | CPU 推理 | 服务器无 GPU，降低成本 | ✓ MKL-DNN 启用，性能 1.02s/张 |
-| 批量处理优先 | 替代人工录入，效率优先 | Phase 2 进行 |
-| 文件导出而非数据库 | 轻量级集成，灵活对接 | — Pending |
+| 批量处理优先 | 替代人工录入，效率优先 | ✓ Phase 2 完成 |
+| 文件导出而非数据库 | 轻量级集成，灵活对接 | Phase 4 待做 |
 | PaddlePaddle 3.x 使用 'paddle' import | 3.x 版本 API 变更 | ✓ 已验证 |
 | opencv-python-headless 替代 opencv-python | 服务器环境无 GUI 依赖 | ✓ 已验证 |
 | PaddleOCR v3 API | 重大版本更新，API 变化 | ✓ 已适配 |
+| 正则表达式解析彩票字段 | 票面格式固定，模式匹配高效 | ✓ Phase 3 完成 |
+| 多注按比赛数量识别 | 每场比赛视为独立投注 | ✓ Phase 3 完成 |
 
 ---
 
-*Last updated: 2026-04-16 after Phase 1*
+*Last updated: 2026-04-16 after Phase 3*

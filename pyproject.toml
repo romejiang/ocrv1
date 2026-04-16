@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ocr-ticket"
+version = "0.1.0"
+description = "足彩彩票票面扫描工具 - PaddleOCR"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "paddlepaddle==3.2.0",
+    "paddleocr>=3.0",
+    "opencv-python-headless>=4.10",
+    "pillow>=10.0",
+    "numpy>=1.24",
+    "PyYAML>=6.0",
+    "tqdm>=4.0",
+    "fastapi>=0.100",
+    "uvicorn[standard]>=0.23",
+]
+
+[project.scripts]
+ocr-ticket = "src.cli:main"
+ocr-server = "src.server:main"
+
+[project.urls]
+Homepage = "https://github.com/example/ocr-ticket"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

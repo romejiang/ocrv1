@@ -1,0 +1,8 @@
+#!/bin/bash
+# 足彩彩票票面扫描工具 - 包装脚本
+# 自动抑制 PaddleOCR 初始化日志
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+exec uv run python -W ignore -m src.cli "$@" 2>/dev/null

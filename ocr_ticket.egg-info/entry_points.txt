@@ -1,0 +1,3 @@
+[console_scripts]
+ocr-server = src.server:main
+ocr-ticket = src.cli:main

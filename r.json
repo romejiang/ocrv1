@@ -1,0 +1,19 @@
+{
+  "total": 1,
+  "success_count": 1,
+  "failed_count": 0,
+  "records": [
+    {
+      "source_file": "./tickets/1.dng",
+      "source_filename": "1.dng",
+      "issue_number": "26045",
+      "bet_time": "2026-04-16",
+      "total_amount": null,
+      "bets_count": 0,
+      "bet_details": "",
+      "status": "success",
+      "error": null,
+      "full_text": "六中国体育彩票\n体彩单场竞猜\n胜平负\n第26045期\n027313-663854-661551-427981\n99PZLJNU52079\n过关方式单关\n5倍\n合计10元\n57.诺丁汉森林\n3\n-\n***\n***\n中国体育彩票\n***\n***\n** *\n感谢您为公益事业贡献2.20元\n高碑店东区A35栋-10号楼1层西门\n05-052340-10100088\n2026-04-1620:55:54\n六中国体育彩票"
+    }
+  ]
+}
