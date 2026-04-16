@@ -32,7 +32,6 @@ class OCRPipeline:
             rec_batch_num=6,
             det_limit_side_len=640,
             det_limit_type="max",
-            show_log=False,
         )
 
     def process(self, image_path: str, preprocess: bool = True) -> Dict:
@@ -45,16 +44,16 @@ class OCRPipeline:
         Returns:
             包含文字、位置、置信度的结构化结果
         """
-        from src.preprocessing import preprocess_pipeline
+        from preprocessing import preprocess_pipeline
 
         if preprocess:
             try:
                 processed_img = preprocess_pipeline(image_path)
-                result = self.ocr.ocr(processed_img, cls=True)
+                result = self.ocr.ocr(processed_img)
             except ImportError:
-                result = self.ocr.ocr(image_path, cls=True)
+                result = self.ocr.ocr(image_path)
         else:
-            result = self.ocr.ocr(image_path, cls=True)
+            result = self.ocr.ocr(image_path)
 
         return self._parse_result(result)
 
@@ -65,15 +64,23 @@ class OCRPipeline:
         if not ocr_result or not ocr_result[0]:
             return structured
 
-        for line in ocr_result[0]:
-            box = line[0]
-            text = line[1][0]
-            confidence = line[1][1]
+        page_data = ocr_result[0]
+        rec_texts = page_data.get("rec_texts", [])
+        rec_scores = page_data.get("rec_scores", [])
+        rec_polys = page_data.get("rec_polys", [])
+
+        for i, text in enumerate(rec_texts):
+            confidence = rec_scores[i] if i < len(rec_scores) else 0.0
+            poly = rec_polys[i] if i < len(rec_polys) else []
 
             structured["words"].append({"text": text, "confidence": float(confidence)})
             structured["full_text"] += text + "\n"
             structured["regions"].append(
-                {"bbox": box, "text": text, "confidence": float(confidence)}
+                {
+                    "bbox": poly.tolist() if hasattr(poly, "tolist") else poly,
+                    "text": text,
+                    "confidence": float(confidence),
+                }
             )
 
         structured["full_text"] = structured["full_text"].strip()
