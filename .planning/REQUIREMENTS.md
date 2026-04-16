@@ -69,31 +69,31 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENV-01 | Phase 1 | Pending |
-| ENV-02 | Phase 1 | Pending |
-| ENV-03 | Phase 1 | Pending |
-| ENV-04 | Phase 1 | Pending |
-| OCR-01 | Phase 1 | Pending |
-| OCR-02 | Phase 1 | Pending |
-| OCR-03 | Phase 1 | Pending |
-| OCR-04 | Phase 1 | Pending |
-| OCR-05 | Phase 1 | Pending |
-| BATCH-01 | Phase 2 | Pending |
-| BATCH-02 | Phase 2 | Pending |
-| BATCH-03 | Phase 2 | Pending |
-| BATCH-04 | Phase 2 | Pending |
-| BATCH-05 | Phase 2 | Pending |
-| BATCH-06 | Phase 2 | Pending |
-| LOT-01 | Phase 3 | Pending |
-| LOT-02 | Phase 3 | Pending |
-| LOT-03 | Phase 3 | Pending |
-| LOT-04 | Phase 3 | Pending |
-| LOT-05 | Phase 3 | Pending |
-| LOT-06 | Phase 3 | Pending |
-| OUT-01 | Phase 4 | Pending |
-| OUT-02 | Phase 4 | Pending |
-| OUT-03 | Phase 4 | Pending |
-| OUT-04 | Phase 4 | Pending |
+| ENV-01 | Phase 1 - Foundation | Pending |
+| ENV-02 | Phase 1 - Foundation | Pending |
+| ENV-03 | Phase 1 - Foundation | Pending |
+| ENV-04 | Phase 1 - Foundation | Pending |
+| OCR-01 | Phase 1 - Foundation | Pending |
+| OCR-02 | Phase 1 - Foundation | Pending |
+| OCR-03 | Phase 1 - Foundation | Pending |
+| OCR-04 | Phase 1 - Foundation | Pending |
+| OCR-05 | Phase 1 - Foundation | Pending |
+| BATCH-01 | Phase 2 - Batch Processing | Pending |
+| BATCH-02 | Phase 2 - Batch Processing | Pending |
+| BATCH-03 | Phase 2 - Batch Processing | Pending |
+| BATCH-04 | Phase 2 - Batch Processing | Pending |
+| BATCH-05 | Phase 2 - Batch Processing | Pending |
+| BATCH-06 | Phase 2 - Batch Processing | Pending |
+| LOT-01 | Phase 3 - Lottery Parsing | Pending |
+| LOT-02 | Phase 3 - Lottery Parsing | Pending |
+| LOT-03 | Phase 3 - Lottery Parsing | Pending |
+| LOT-04 | Phase 3 - Lottery Parsing | Pending |
+| LOT-05 | Phase 3 - Lottery Parsing | Pending |
+| LOT-06 | Phase 3 - Lottery Parsing | Pending |
+| OUT-01 | Phase 4 - Output & CLI | Pending |
+| OUT-02 | Phase 4 - Output & CLI | Pending |
+| OUT-03 | Phase 4 - Output & CLI | Pending |
+| OUT-04 | Phase 4 - Output & CLI | Pending |
 
 **Coverage:**
 - v1 requirements: 25 total
