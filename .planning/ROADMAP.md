@@ -6,7 +6,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - OCR 流水线完整端到端
+- [x] **Phase 1: Foundation** - OCR 流水线完整端到端
 - [ ] **Phase 2: Batch Processing** - 多进程批量处理
 - [ ] **Phase 3: Lottery Parsing** - 彩票结构化解析
 - [ ] **Phase 4: Output & CLI** - JSON/CSV 导出与命令行接口
@@ -26,9 +26,9 @@
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: 开发环境配置（Python 3.10+, PaddlePaddle CPU, PaddleOCR）
-- [ ] 01-02: 单张 OCR 流水线实现（预处理 → 检测 → 识别 → 输出）
-- [ ] 01-03: CPU 推理优化与性能验证
+- [x] 01-01: 开发环境配置（Python 3.10+, PaddlePaddle CPU, PaddleOCR）
+- [x] 01-02: 单张 OCR 流水线实现（预处理 → 检测 → 识别 → 输出）
+- [x] 01-03: CPU 推理优化与性能验证
 
 ### Phase 2: Batch Processing
 **Goal**: 多进程批量处理图片，支持文件夹/ZIP 导入，容错处理
@@ -83,8 +83,8 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
-| 2. Batch Processing | 0/2 | Not started | - |
+| 1. Foundation | 3/3 | Complete | 2026-04-16 |
+| 2. Batch Processing | 0/2 | Ready to plan | - |
 | 3. Lottery Parsing | 0/2 | Not started | - |
 | 4. Output & CLI | 0/2 | Not started | - |
 
