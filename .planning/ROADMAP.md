@@ -41,11 +41,11 @@ Plans:
   4. 进度展示显示已处理/总数量，支持成功/失败统计
   5. 错误图片自动标记并记录日志，不中断整批处理
   6. 单张图片崩溃不影响其他图片处理
-**Plans**: 2 plans
+**Plans**: 2 plans (2 completed)
 
 Plans:
-- [ ] 02-01: 批量导入（文件夹、ZIP）与多进程架构
-- [ ] 02-02: 进度展示、错误处理与容错机制
+- [x] 02-01: 批量导入（文件夹、ZIP）与多进程架构
+- [x] 02-02: 进度展示、错误处理与容错机制
 
 ### Phase 3: Lottery Parsing
 **Goal**: 从 OCR 文字中提取彩票专属字段（期号、投注内容、赔率、金额）
@@ -58,11 +58,11 @@ Plans:
   4. 投注内容（比赛、选项）解析正确
   5. 赔率数字识别与提取正确
   6. 单张票面多注投注能独立识别
-**Plans**: 2 plans
+**Plans**: 2 plans (2 completed)
 
 Plans:
-- [ ] 03-01: 基础字段提取（期号、时间、金额）
-- [ ] 03-02: 投注内容与赔率解析、多注识别
+- [x] 03-01: 基础字段提取（期号、时间、金额）
+- [x] 03-02: 投注内容与赔率解析、多注识别
 
 ### Phase 4: Output & CLI
 **Goal**: JSON/CSV 结构化导出，CLI 命令行接口
@@ -71,22 +71,22 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. JSON 导出包含完整字段结构，格式合法
   2. CSV 导出表格格式正确，可被 Excel 正常打开
-  3. CLI 命令 `ocr-scan` 能处理单张图片并输出结果
+  3. CLI 命令 `ocr-ticket` 能处理单张图片并输出结果
   4. 导出结果与原始图片文件名正确映射
-**Plans**: 2 plans
+**Plans**: 2 plans (2 completed)
 
 Plans:
-- [ ] 04-01: JSON/CSV 导出实现
-- [ ] 04-02: CLI 命令行接口
+- [x] 04-01: JSON/CSV 导出实现
+- [x] 04-02: CLI 命令行接口
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-04-16 |
-| 2. Batch Processing | 0/2 | Ready to plan | - |
-| 3. Lottery Parsing | 0/2 | Not started | - |
-| 4. Output & CLI | 0/2 | Not started | - |
+| 2. Batch Processing | 2/2 | Complete | 2026-04-16 |
+| 3. Lottery Parsing | 2/2 | Complete | 2026-04-16 |
+| 4. Output & CLI | 2/2 | Complete | 2026-04-16 |
 
 ## Coverage
 
