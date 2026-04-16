@@ -171,7 +171,7 @@ def compress_image(
 def preprocess_pipeline(
     image_path: str,
     apply_denoise: bool = False,
-    apply_grayscale: bool = True,
+    apply_grayscale: bool = False,
     apply_contrast: bool = True,
     apply_compress: bool = True,
     apply_perspective: bool = False,

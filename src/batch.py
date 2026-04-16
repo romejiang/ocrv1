@@ -16,6 +16,24 @@ from tqdm import tqdm
 
 SUPPORTED_FORMATS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp"}
 
+_pipeline_instance = None
+
+
+def _init_worker():
+    global _pipeline_instance
+    from src.pipeline import OCRPipeline
+
+    _pipeline_instance = OCRPipeline(use_model="server")
+
+
+def _process_single_worker(args: Tuple[str, bool]) -> Tuple[str, bool, Dict]:
+    image_path, use_preprocess = args
+    try:
+        result = _pipeline_instance.process(image_path, preprocess=use_preprocess)
+        return image_path, True, result
+    except Exception as e:
+        return image_path, False, str(e)
+
 
 @dataclass
 class BatchResult:
@@ -159,9 +177,13 @@ class BatchProcessor:
 
         args_list = [(str(p), use_preprocess) for p in image_paths]
 
-        with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
+        with ProcessPoolExecutor(
+            max_workers=self.max_workers,
+            initializer=_init_worker,
+        ) as executor:
             futures = {
-                executor.submit(self.process_single, args): args for args in args_list
+                executor.submit(_process_single_worker, args): args
+                for args in args_list
             }
 
             if show_progress:

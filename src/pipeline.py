@@ -14,7 +14,9 @@ class OCRPipeline:
         use_angle_cls: bool = False,
         lang: str = "ch",
         enable_mkldnn: bool = True,
+        enable_hpi: bool = None,
         cpu_threads: int = 8,
+        use_model: str = "server",
     ):
         """初始化 PaddleOCR
 
@@ -22,16 +24,29 @@ class OCRPipeline:
             use_angle_cls: 是否启用方向分类（禁用可提升速度）
             lang: 语言，'ch' 表示中文
             enable_mkldnn: 启用 MKL-DNN 加速
+            enable_hpi: 启用 HPI 高性能推理模式，为 None 时自动检测
             cpu_threads: CPU 线程数
+            use_model: 模型类型，'mobile' 使用 PP-OCRv5_mobile（更快），'server' 使用 PP-OCRv5_server（更高精度）
         """
+        import platform
+
+        if enable_hpi is None:
+            enable_hpi = platform.system() == "Linux"
+
+        det_model_name = f"PP-OCRv5_{use_model}_det"
+        rec_model_name = f"PP-OCRv5_{use_model}_rec"
+
         self.ocr = PaddleOCR(
             use_angle_cls=use_angle_cls,
             lang=lang,
             enable_mkldnn=enable_mkldnn,
+            enable_hpi=enable_hpi,
             cpu_threads=cpu_threads,
             rec_batch_num=6,
             det_limit_side_len=640,
             det_limit_type="max",
+            text_detection_model_name=det_model_name,
+            text_recognition_model_name=rec_model_name,
         )
 
     def process(

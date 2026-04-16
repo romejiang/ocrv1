@@ -63,6 +63,18 @@ async def lifespan(app: FastAPI):
 
     ocr_pipeline = OCRPipeline()
     load_time = time.time() - start
+    import platform
+    import paddle
+
+    is_linux = platform.system() == "Linux"
+    print(
+        f"[版本] Python={platform.python_version()} PaddlePaddle={paddle.__version__}",
+        file=sys.stderr,
+    )
+    print(
+        f"[配置] enable_hpi={'True (Linux环境)' if is_linux else 'False (macOS/其他)'}",
+        file=sys.stderr,
+    )
     print(f"OCR 模型加载完成 ({load_time:.1f}s)", file=sys.stderr)
     yield
     print("关闭 OCR 服务...", file=sys.stderr)
