@@ -11,7 +11,7 @@ class OCRPipeline:
 
     def __init__(
         self,
-        use_angle_cls: bool = True,
+        use_angle_cls: bool = False,
         lang: str = "ch",
         enable_mkldnn: bool = True,
         cpu_threads: int = 8,
@@ -19,7 +19,7 @@ class OCRPipeline:
         """初始化 PaddleOCR
 
         Args:
-            use_angle_cls: 是否启用方向分类
+            use_angle_cls: 是否启用方向分类（禁用可提升速度）
             lang: 语言，'ch' 表示中文
             enable_mkldnn: 启用 MKL-DNN 加速
             cpu_threads: CPU 线程数
