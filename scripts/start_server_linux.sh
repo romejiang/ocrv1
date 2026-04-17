@@ -14,11 +14,14 @@ echo "=========================================="
 echo "监听地址: $HOST:$PORT"
 echo ""
 
+# 使用 venv 中的 Python（HPI 需要 Python 3.12）
+PYTHON_CMD=".venv/bin/python"
+
 # 检查 PaddlePaddle 版本
-uv run python -c "import paddle; print(f'PaddlePaddle: {paddle.__version__}')"
-uv run python -c "import platform; print(f'Platform: {platform.system()}')"
+$PYTHON_CMD -c "import paddle; print(f'PaddlePaddle: {paddle.__version__}')"
+$PYTHON_CMD -c "import platform; print(f'Platform: {platform.system()}')"
 echo ""
 
 # 启动服务
 echo "启动 OCR API 服务..."
-exec uv run python -m src.server --host "$HOST" --port "$PORT"
+exec $PYTHON_CMD -m src.server --host "$HOST" --port "$PORT"

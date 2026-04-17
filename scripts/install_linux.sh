@@ -1,6 +1,9 @@
 #!/bin/bash
 # PaddleOCR Linux 环境安装脚本
 # 运行方式: bash scripts/install_linux.sh
+#
+# 注意: HPI 依赖 ultra_infer_python 仅支持 Python 3.8-3.12
+# 本脚本使用 Python 3.12 创建虚拟环境
 
 set -e
 
@@ -22,6 +25,15 @@ if ! command -v uv &> /dev/null; then
 fi
 
 echo "使用 uv 安装依赖..."
+
+# 使用 Python 3.12（HPI 依赖 ultra_infer_python 仅支持到 cp312）
+echo "创建 Python 3.12 虚拟环境..."
+rm -rf .venv
+UV PYTHON=3.12 uv venv
+
+# 安装 pip（install_hpi_deps 需要）
+echo "安装 pip..."
+uv pip install pip
 
 # 安装 PaddlePaddle 3.3.0 (CPU 版本)
 echo "安装 PaddlePaddle 3.3.0..."
