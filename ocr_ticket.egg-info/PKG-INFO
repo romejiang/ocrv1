@@ -3,7 +3,7 @@ Name: ocr-ticket
 Version: 0.1.0
 Summary: 足彩彩票票面扫描工具 - PaddleOCR
 Project-URL: Homepage, https://github.com/example/ocr-ticket
-Requires-Python: >=3.13
+Requires-Python: >=3.12
 Description-Content-Type: text/markdown
 Requires-Dist: paddlepaddle==3.3.0
 Requires-Dist: paddleocr>=3.0

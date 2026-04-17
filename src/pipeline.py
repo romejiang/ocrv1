@@ -31,7 +31,7 @@ class OCRPipeline:
         import platform
 
         if enable_hpi is None:
-            enable_hpi = platform.system() == "Linux"
+            enable_hpi = False
 
         det_model_name = f"PP-OCRv5_{use_model}_det"
         rec_model_name = f"PP-OCRv5_{use_model}_rec"
