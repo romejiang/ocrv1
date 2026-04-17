@@ -29,7 +29,7 @@ echo "使用 uv 安装依赖..."
 # 使用 Python 3.12（HPI 依赖 ultra_infer_python 仅支持到 cp312）
 echo "创建 Python 3.12 虚拟环境..."
 rm -rf .venv
-UV PYTHON=3.12 uv venv
+uv venv --python 3.12
 
 # 安装 pip（install_hpi_deps 需要）
 echo "安装 pip..."
