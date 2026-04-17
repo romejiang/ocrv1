@@ -7,7 +7,7 @@ name = "ocr-ticket"
 version = "0.1.0"
 description = "足彩彩票票面扫描工具 - PaddleOCR"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "paddlepaddle==3.3.0",
     "paddleocr>=3.0",

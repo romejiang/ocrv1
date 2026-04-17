@@ -23,7 +23,7 @@
 | Library | Version | Purpose | Why |
 |---------|---------|---------|-----|
 | **PaddlePaddle (CPU)** | `3.3.0` | 深度学习框架 | 百度开源，3.3.0 为最新 stable 版本，支持 HPI 高性能推理 |
-| **Python** | `3.13` | Python 版本 | PaddlePaddle 3.3.0 支持 Python 3.9-3.13，推荐 3.13 |
+| **Python** | `3.12` | Python 版本 | PaddlePaddle 3.3.0 支持 Python 3.9-3.13，推荐 3.12（HPI 依赖支持） |
 | **PaddleOCR** | `pip install paddleocr` (latest) | OCR 工具库 | 官方维护，支持 80+ 语言，提供预训练模型，无需训练 |
 | **OpenCV** | `4.x` (latest) | 图像预处理 | BGR→RGB 转换、灰度化、透视变换、去噪 |
 | **Pillow** | `10.x` (latest) | 图像读写 | 通用图像处理，JPEG/PNG 支持 |
